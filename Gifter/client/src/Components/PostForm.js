@@ -2,11 +2,12 @@ import React, { useContext, useState } from "react";
 import { PostContext } from "../Providers/PostProvider";
 import Post from "./Post";
 import { Form, FormGroup, Label, Input, Button } from "reactstrap";
-import { getAllByAltText } from "@testing-library/react";
+import { useHistory } from "react-router-dom";
 
 const PostForm = () => {
     const [post, setPost] = useState({ title: "", imageUrl: "", caption: "", dateCreated: "", userProfileId: 1 });
     const { getAllPosts, addPost } = useContext(PostContext);
+    const history = useHistory();
 
     const handleFieldChange = evt => {
         const stateToChange = { ...post }
@@ -16,8 +17,8 @@ const PostForm = () => {
 
     const ConstructPost = evt => {
         evt.preventDefault();
-        addPost(post).then(() => {
-            getAllPosts()
+        addPost(post).then((p) => {
+            history.pushState("/");
         })
     };
 

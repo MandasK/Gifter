@@ -1,37 +1,33 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import { PostContext } from "../Providers/PostProvider";
-import Post from "./Post";
-import { Form, FormGroup, Label, Input, Button } from "reactstrap";
-import { getAllByAltText } from "@testing-library/react";
+import { Form, FormGroup, Input, Button } from "reactstrap";
 
 const PostSearch = () => {
     const [search, setSearch] = useState("");
-    const { searchPosts, getAllPosts } = useContext(PostContext);
+    const { searchPosts } = useContext(PostContext);
 
     const handleFieldChange = evt => {
-        const stateToChange = { ...search }
-        stateToChange[evt.target.id] = evt.target.value;
+        const stateToChange = evt.target.value;
         setSearch(stateToChange);
-    }
+    };
 
-    const Search = evt => {
-        evt.preventDefault();
+    const newSearch = evt => {
         searchPosts(search);
-    }
+    };
 
 
 
     return (
         <>
+            <h3>Search!</h3>
             <Form className="dashForm recipeListSearch">
                 <FormGroup>
-                    <Label for="search">Title</Label>
-                    <Input type="text" name="search" id="search" placeholder="Enter Search" onChange={handleFieldChange} />
+                    <Input type="text" name="Search" id="Search" placeholder="Enter Search" onChange={handleFieldChange} />
                 </FormGroup>
-                <Button onClick={Search} type="submit">Search</Button>
+                <Button onClick={newSearch}>Search!</Button>{' '}
             </Form>
         </>
     )
-}
+};
 
 export default PostSearch;
