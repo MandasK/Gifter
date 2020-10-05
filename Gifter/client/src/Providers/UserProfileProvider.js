@@ -8,11 +8,11 @@ export const UserProfileProvider = (props) => {
     const GetAllUsers = () => {
         return fetch("/api/userProfile/")
             .then((res) => res.json())
-            .then();
+            .then(setUserProfile);
     }
     const GetWithPosts = (id) => {
         return fetch(`/api/userProfile/${id}/GetWithPosts`)
-            .then((res) => res.json(setUserProfile));
+            .then((res) => res.json());
     }
 
     return (
