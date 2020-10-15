@@ -18,7 +18,7 @@ const PostForm = () => {
     const ConstructPost = evt => {
         evt.preventDefault();
         addPost(post).then((p) => {
-            history.pushState("/");
+            history.push("/");
         })
     };
 
